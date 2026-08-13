@@ -1,10 +1,8 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ActivityIndicator  } from 'react-native';
 import Posteos from './Posteos';
 import Stories from './Stories';
-import useRouter from "expo-router"
-//IMPORTAR ROUTER, usestate
-const Stack = createStackNavigator();
+import useRouter from 'expo-router'
+import { useState, useEffect } from 'react';
 
 
 export default function Feed({data}) {
@@ -15,7 +13,7 @@ export default function Feed({data}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-fetch('')
+fetch('https://dummyjson.com/posts')
       .then((response) => response.json())
       .then((json) => {
         setData(json);
@@ -45,20 +43,20 @@ fetch('')
 
   <FlatList
         data={data}
-        keyExtractor={(post) => post.id}
-        renderItem={({ post }) => (
-        <Stack.Screen name="Stories" component={Stories} post={post} ></Stack.Screen>
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+        <Stories  post={item} ></Stories>
         )}></FlatList>
 
             <FlatList
         data={data}
-        keyExtractor={(post) => post.id}
-        renderItem={({ post }) => (
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
        
                  <Posteos
-                 post={post} id={post.id}
-       
-          onPress={() => abrirPost(post.id)}
+                 post={item} id={item.id}
+       datauser = {datauser} //QCHEQUEAR ESTO
+          onPress={() => abrirPost(item.id)}
         />
         )}></FlatList>
     

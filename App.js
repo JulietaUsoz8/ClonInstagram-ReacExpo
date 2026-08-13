@@ -15,7 +15,7 @@ export default function App() {
 
 
   useEffect(() => {
-fetch('https://dummyjson.com/test')
+fetch('https://dummyjson.com/users')
       .then((response) => response.json())
       .then((json) => {
         setData(json);
@@ -39,9 +39,10 @@ fetch('https://dummyjson.com/test')
 
   return (
     <View style={styles.container}>
-        <Stack.Screen name="Header" component={Header} ></Stack.Screen>
+       
+       <Stack.Screen name="Header" component={Header} ></Stack.Screen>
         <Stack.Screen name="Feed" component={Feed}data={data}></Stack.Screen>
-        <Stack.Screen name="Menu" component={Menu}></Stack.Screen>
+        <Stack.Screen name="Menu" component={Menu}data={data}></Stack.Screen>
 
     </View>
   );

@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 const Stack = createStackNavigator();
 
 
-export default function Stories({post, id}) {
+export default function Stories({post}) {
 
   return (
     
@@ -15,7 +15,7 @@ export default function Stories({post, id}) {
   source={{ uri: post.image }}
   style={{ width: 50, height: 50 }}
 />
- <Text>{post.firstName}{post.lastName}</Text>
+ <Text>{post.firstName}.{post.lastName}</Text>
   
     </View>
   );

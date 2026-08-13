@@ -2,20 +2,20 @@
 import { StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
- camera, chevronRight 
+ Camera, ChevronRight 
 } from "lucide-react";
  const Header =() =>{
 
 return(
     <View style={styles.header}>
       <StatusBar style="light" />
-      <camera></camera>
+      <Camera></Camera>
      <Image
         source={require("../../assets/logo.png")}
         style={styles.logo}
         resizeMode="contain"
       />
-      <chevronRight></chevronRight>
+      <ChevronRight></ChevronRight>
     </View>
 
 
