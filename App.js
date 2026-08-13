@@ -13,6 +13,7 @@ export default function App() {
    const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
 fetch('https://dummyjson.com/test')
       .then((response) => response.json())

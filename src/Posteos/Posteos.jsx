@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 export default function Posteos({post, id}) {
 
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPress}>
  <Text>{post.firstName}{post.lastName}</Text>
     <Image
   source={{ uri: post.image }}
@@ -21,7 +21,7 @@ export default function Posteos({post, id}) {
 <Heart></Heart>
 <Send></Send>
 <messageCircle></messageCircle>
-    </View>
+    </Pressable>
   );
 }
 //AGREGAR LIKES E ICONOS
