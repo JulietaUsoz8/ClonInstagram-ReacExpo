@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList, ActivityIndicator  } from 'react-native';
 import Posteos from './Posteos';
 import Stories from './Stories';
-import useRouter from 'expo-router'
+import { useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
 
 
@@ -9,14 +9,14 @@ export default function Feed({data}) {
     const router = useRouter();
 
 
-     const [datauser, setData] = useState([]);
+     const [datapost, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 fetch('https://dummyjson.com/posts')
       .then((response) => response.json())
       .then((json) => {
-        setData(json);
+        setData(json.posts);
         setLoading(false);
       })
       .catch((error) => {
@@ -43,19 +43,19 @@ fetch('https://dummyjson.com/posts')
 
   <FlatList
         data={data}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-        <Stories  post={item} ></Stories>
+        <Stories  user={item} ></Stories>
         )}></FlatList>
 
             <FlatList
-        data={data}
+        datapost={datapost}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
        
                  <Posteos
                  post={item} id={item.id}
-       datauser = {datauser} //QCHEQUEAR ESTO
+    user={data.find(user => user.id === item.userId)}
           onPress={() => abrirPost(item.id)}
         />
         )}></FlatList>

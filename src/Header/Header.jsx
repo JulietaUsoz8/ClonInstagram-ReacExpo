@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
  Camera, ChevronRight 
-} from "lucide-react";
+} from "lucide-react-native";
  const Header =() =>{
 
 return(

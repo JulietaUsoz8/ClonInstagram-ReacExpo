@@ -1,19 +1,31 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+import { StyleSheet, Text, View } from 'react-native';
 import {
   Menu, User
-} from "lucide-react";
-
+} from "lucide-react-native";
+import { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  ActivityIndicator
+} from "react-native";
+import { useLocalSearchParams } from "expo-router";
 
 export default function Perfil() {
 
     const { id } = useLocalSearchParams();
+    const [data, setUser] = useState(null);
 
     const [post, setPost] = useState(null);
-    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+const responseUser = await fetch(
+    `https://dummyjson.com/users/${id}`
+);
 
+const userData = await responseUser.json();
+
+setUser(userData);
     useEffect(() => {
 
         const cargarDatos = async () => {
@@ -30,14 +42,7 @@ export default function Perfil() {
                 setPost(postData);
 
 
-                // Obtener el usuario que creó el post
-                const responseUser = await fetch(
-                    `https://dummyjson.com/users/${postData.userId}`
-                );
-
-                const userData = await responseUser.json();
-
-                setUser(userData);
+           
 
             } catch (error) {
 
@@ -65,7 +70,7 @@ export default function Perfil() {
     }
 
 
-    if (!post || !user) {
+    if (!post || !data) {
         return (
             <View>
                 <Text>No se encontró el post.</Text>
@@ -81,13 +86,13 @@ export default function Perfil() {
 
             <View>
                 <Image
-                    source={{ uri: user.image }}
-                    style={{
-                        width: 50,
-                        height: 50,
-                        borderRadius: 25
-                    }}
-                />
+  source={{ uri: data.image }}
+  style={{
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  }}
+/>
 
 
 
@@ -98,7 +103,7 @@ export default function Perfil() {
 
 
                 <Text>
-                    {user.firstName} {user.lastName}
+                    {data.firstName} {data.lastName}
                 </Text>
                  <Text>
                 {post.body}
@@ -131,3 +136,5 @@ export default function Perfil() {
         </View>
     );
 }
+
+export default Perfil;

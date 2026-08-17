@@ -1,8 +1,8 @@
 
 import { StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import useRouter from 'expo-router'
-
+import { useRouter } from 'expo-router';
+import { CirclePlus } from 'lucide-react-native';
 import {
 House, Search, Users, Bookmark
 } from "lucide-react";
@@ -11,21 +11,21 @@ import Perfil from './Perfil';
 
  const Menu =({data}) =>{
 
-   id = data.id[0];
+   let id = data[0].id;
 const router = useRouter();
 
  const abrirPost = (id) => {
-    router.push(`./src/Perfil/${id}`);
+    router.push(`/Perfil/${id}`);
   };
 return(
     <View style={styles.header}>
  <House></House>
  <Search></Search>
- <circlePlus></circlePlus>   
+ <CirclePlus></CirclePlus>   
  <Bookmark></Bookmark>   
- <Users>
-    <Perfil    data ={data[0]}     onPress={() => abrirPost(id)}></Perfil>
-    </Users>  
+<Pressable onPress={() => abrirPerfil(data[0].id)}>
+    <Users />
+</Pressable>
     </View>
 
 
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Header;
+export default Menu;

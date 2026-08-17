@@ -1,21 +1,19 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+
+import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 
 
-const Stack = createStackNavigator();
 
 
-export default function Stories({post}) {
+export default function Stories({user}) {
 
   return (
     
     <View style={styles.container}>
           <Image
-  source={{ uri: post.image }}
+  source={{ uri: user.image }}
   style={{ width: 50, height: 50 }}
 />
- <Text>{post.firstName}.{post.lastName}</Text>
+ <Text>{user.firstName}.{user.lastName}</Text>
   
     </View>
   );

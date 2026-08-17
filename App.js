@@ -1,9 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import Header from './src/Header';
 import Menu from './src/Menu';
 import Feed from './src/Feed';
+import { useState, useEffect } from 'react';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +18,7 @@ export default function App() {
 fetch('https://dummyjson.com/users')
       .then((response) => response.json())
       .then((json) => {
-        setData(json);
+        setData(json.users);
         setLoading(false);
       })
       .catch((error) => {
@@ -40,9 +40,9 @@ fetch('https://dummyjson.com/users')
   return (
     <View style={styles.container}>
        
-       <Stack.Screen name="Header" component={Header} ></Stack.Screen>
-        <Stack.Screen name="Feed" component={Feed}data={data}></Stack.Screen>
-        <Stack.Screen name="Menu" component={Menu}data={data}></Stack.Screen>
+       <Header ></Header>
+        <Feed data={data}></Feed>
+        <Menu data={data}></Menu>
 
     </View>
   );

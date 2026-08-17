@@ -3,8 +3,8 @@ import { View, Text, Image, ActivityIndicator } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import {
   Heart, Send,
-messageCircle, HeartOff
-} from "lucide-react";
+MessageCircle, HeartOff
+} from "lucide-react-native";
 
 export default function Post() {
 
@@ -13,7 +13,11 @@ export default function Post() {
     const [post, setPost] = useState(null);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [liked, setLiked] = useState(false);
+    const setLike = () => {
+    setLiked(!liked);
+};
+    
     useEffect(() => {
 
         const cargarDatos = async () => {
@@ -80,14 +84,14 @@ export default function Post() {
   
 
             <View>
-                <Image
-                    source={{ uri: user.image }}
-                    style={{
-                        width: 50,
-                        height: 50,
-                        borderRadius: 25
-                    }}
-                />
+       <Image
+    source={{ uri: user.image }}
+    style={{
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    }}
+/>
 
                 <Text>
                     {user.firstName} {user.lastName}
@@ -96,24 +100,22 @@ export default function Post() {
 
 
      
+<Image
+    source={{ uri: user.image }}
+    style={{
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    }}
+/>
 
-            <Image
-                source={{
-                    uri: `https://picsum.photos/id/${post.id + 10}/500/500`
-                }}
-                style={{
-                    width: "100%",
-                    height: 400
-                }}
-            />
-
-
-                      
-            <Heart>
-                      onPress={() => abrirPost(<HeartOff></HeartOff>)}
-            </Heart>
+  <Pressable onPress={() => setLiked(!liked)}>
+    <Heart
+        fill={liked ? "black" : "none"}
+    />
+</Pressable>
             <Send></Send>
-            <messageCircle></messageCircle>
+            <MessageCircle></MessageCircle>
 
            
 

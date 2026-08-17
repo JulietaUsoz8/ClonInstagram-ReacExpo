@@ -1,26 +1,33 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable, Image } from 'react-native';
 import {
   Heart, Send,
 messageCircle, HeartOff
-} from "lucide-react";
+} from "lucide-react-native";
 
 const Stack = createStackNavigator();
 
 
-export default function Posteos({post, id}) {
-
+export default function Posteos({ post, user, id, onPress }) {
   return (
     <Pressable onPress={onPress}>
-       <Image
-  source={{ uri: post.image }}
-  style={{ width: 50, height: 50 }}
+   <Image
+    source={{ uri: user.image }}
+    style={{
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    }}
 />
- <Text>{post.firstName}.{post.lastName}</Text>
-    <Image
-  source={{ uri: post.image }}
-  style={{ width: 50, height: 50 }}
+ <Text>{user.firstName}.{user.lastName}</Text>
+<Image
+    source={{ uri: user.image }}
+    style={{
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    }}
 />
 <Heart>
            onPress={() => abrirPost(<HeartOff></HeartOff>)}
