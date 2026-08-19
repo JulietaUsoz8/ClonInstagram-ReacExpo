@@ -1,11 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import Header from './src/Header';
-import Menu from './src/Menu';
-import Feed from './src/Feed';
+import Header from './src/Header/Header';
+import Menu from './src/Menu/Menu';
+import Feed from './src/Feed/Feed';
 import { useState, useEffect } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 
 export default function App() {

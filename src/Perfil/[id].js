@@ -19,13 +19,44 @@ export default function Perfil() {
 
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
-const responseUser = await fetch(
-    `https://dummyjson.com/users/${id}`
-);
 
-const userData = await responseUser.json();
 
-setUser(userData);
+
+  useEffect(() => {
+
+        const cargarDatos = async () => {
+
+            try {
+
+                // Obtener el post según el ID de la ruta
+                const responseUser = await fetch(
+                    `https://dummyjson.com/users/${id}`
+                );
+
+                const userData = await responseUser.json();
+
+                setPost(userData);
+
+
+           
+
+            } catch (error) {
+
+                console.error(error);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+        };
+
+        cargarDatos();
+
+    }, [id]);
+
+
+
     useEffect(() => {
 
         const cargarDatos = async () => {
@@ -136,5 +167,3 @@ setUser(userData);
         </View>
     );
 }
-
-export default Perfil;

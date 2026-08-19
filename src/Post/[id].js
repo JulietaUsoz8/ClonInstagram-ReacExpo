@@ -80,9 +80,6 @@ export default function Post() {
 
     return (
         <View>
-
-  
-
             <View>
        <Image
     source={{ uri: user.image }}
