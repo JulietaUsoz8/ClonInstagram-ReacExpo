@@ -1,6 +1,5 @@
 
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { useRouter } from 'expo-router';
 import { CirclePlus } from 'lucide-react-native';
 import {
@@ -8,15 +7,21 @@ House, Search, Users, Bookmark
 } from "lucide-react-native";
 
 
+import { useNavigation } from "@react-navigation/native";
+
 
  const Menu =({data}) =>{
-
-   let id = data[0].id;
-const router = useRouter();
-
- const abrirPerfil = (id) => {
-    router.push(`/Perfil/${id}`);
-  };
+const navigation = useNavigation();
+   
+//const router = useRouter();
+const abrirPerfil = (id) => {
+navigation.navigate("Perfil", {
+   id: id,
+  });
+};
+ //const abrirPerfil = (id) => {
+  // router.push(`/Perfil/${id}`);
+  //};
 return(
   <View style={styles.menu}>
 
@@ -53,7 +58,7 @@ return(
       </Pressable>
 
       <Pressable
-        onPress={() => abrirPerfil(data[0].id)}
+        onPress={() => abrirPerfil(9)}
       >
         <Users
           size={25}

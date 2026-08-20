@@ -12,7 +12,6 @@ export default function Posteos({ post, user, id, onPress }) {
   return (
     <View style={styles.post}>
 
-      {/* HEADER DEL POST */}
       <View style={styles.postHeader}>
 
         <View style={styles.userInfo}>

@@ -1,20 +1,17 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import {
   Menu, User
 } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  ActivityIndicator
-} from "react-native";
+
 import { useLocalSearchParams } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Perfil() {
+export default function Perfil({route}) {
+    const { id } = route.params;
 
-    const { id } = useLocalSearchParams();
+   //const { id } = useLocalSearchParams();
     const [data, setUser] = useState(null);
 
     const [post, setPost] = useState(null);
@@ -35,7 +32,7 @@ export default function Perfil() {
 
                 const userData = await responseUser.json();
 
-                setPost(userData);
+                setUser(userData);
 
 
            
@@ -104,17 +101,12 @@ export default function Perfil() {
     if (!post || !data) {
         return (
             <View>
-                <Text>No se encontró el post.</Text>
+                <Text>No se encontró el perfil.</Text>
             </View>
         );
     }
-
-
     return (
         <View>
-
-  
-
             <View>
                 <Image
   source={{ uri: data.image }}
@@ -124,26 +116,19 @@ export default function Perfil() {
     borderRadius: 25,
   }}
 />
-
-
-
                       <Text>post</Text>
                       <Text>followers</Text>
                       <Text>following</Text>
-
-
-
                 <Text>
                     {data.firstName} {data.lastName}
                 </Text>
                  <Text>
                 {post.body}
             </Text>
-
             </View>
 
-                    <Menu></Menu>
-                    <User></User>
+                    <Menu/>
+                    <User/>
 
             <Image
                 source={{
@@ -154,16 +139,6 @@ export default function Perfil() {
                     height: 400
                 }}
             />
-
-
-                      
-      
-
-            
-
-            
-
-           
         </View>
     );
 }
